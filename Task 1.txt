@@ -1,0 +1,10 @@
+CREATE DATABASE Frameboxx;
+
+Create table Frameboxers(
+Name varchar(50),
+Cource varchar(50),
+ContactNumber varchar(10),
+PaidFees int);
+
+INSERT into frameboxers VALUES("Riya","Full Stack","9874563215",120000);
+INSERT into frameboxers VALUES("Arav","Data Science","7485963215",1800000);
