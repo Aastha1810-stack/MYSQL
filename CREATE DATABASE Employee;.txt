@@ -1,0 +1,61 @@
+CREATE DATABASE Employee;
+
+CREATE TABLE EmployeeDetails(
+    EmpId int PRIMARY KEY,
+    FullName varchar(50),
+    ManagerId int,
+    DateOfJoining Date,
+    City varchar(50)
+    );
+
+INSERT INTO employeedetails VALUES(121,"John Snow",321,"01/31/2019","Toronot");
+INSERT INTO employeedetails VALUES(321,"Walter White",986,"01/30/2020","Califonia");
+INSERT INTO employeedetails VALUES(421,"Kuldeep Rana",876,"27/11/2021","New Dehli");
+
+CREATE TABLE EmployeeSalary(
+    EmpId int,
+    Project varchar(10),
+    Salary int,
+    Variable int,
+    FOREIGN KEY (EmpId) REFERENCES employeedetails (EmpId)
+    );
+
+INSERT INTO employeesalary VALUES(121,"P1",8000,500);
+INSERT INTO employeesalary VALUES(321,"P2",10000,1000);
+INSERT INTO employeesalary VALUES(421,"P1",12000,0);
+
+SELECT EmpId,FullName FROM employeedetails WHERE ManagerId = 986;
+
+SELECT DISTINCT(Project) FROM employeesalary;
+
+SELECT COUNT(EmpId) FROM employeesalary WHERE Project = 'P1';
+
+SELECT EmpId FROM employeesalary WHERE Salary BETWEEN 9000 AND 15000;
+
+SELECT EmpId,FullName,ManagerId,City FROM employeedetails WHERE City='Toronto' AND ManagerId=321;
+
+
+SELECT * FROM employeesalary WHERE NOT project='P1';
+
+SELECT EmpId,salary+variable AS Total_salary FROM employeesalary;
+
+SELECT FullName FROM employeedetails WHERE FullName LIKE '__hn%';
+
+SELECT EmpId FROM employeedetails
+UNION
+SELECT EmpId FROM employeesalary;
+
+SELECT * FROM employeedetails INNER JOIN employeesalary ON employeedetails.EmpId=employeesalary.EmpId;
+
+SELECT * FROM employeedetails 
+LEFT JOIN employeesalary
+ON employeedetails.EmpId = employeesalary.EmpId
+WHERE employeesalary.EmpId IS NULL;
+
+SELECT REPLACE(FullName," ","-") AS Name
+FROM employeedetails;
+
+
+
+
+

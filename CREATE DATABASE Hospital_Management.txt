@@ -1,0 +1,80 @@
+CREATE DATABASE Hospital_Management;
+
+
+CREATE TABLE Patient(
+    patient_ID int PRIMARY KEY,
+    First_Name varchar(50),
+    Last_Name varchar(50),
+    Dob date,
+    Gender varchar(50),
+    Address varchar(50),
+    Phone varchar(10),
+    Insurance_Info boolean
+    );
+
+
+
+CREATE TABLE Appointment(
+    Appointment_id int PRIMARY KEY,
+    patient_id int,
+    doctor_id int,
+    appointment_date date,
+    status varchar(50)
+    FOREIGN KEY(patient_id) REFERENCES patient(patient_id),
+    FOREIGN KEY(doctor_id) REFERENCES Doctor(doctor_id)
+    );
+
+
+
+INSERT INTO patient VALUES(1,"Vishal","Patel","2006-10-23","Male","Mumbai","7854129678","Yes");
+INSERT INTO patient VALUES(2,"Mansi","Prajapati","2004-11-28","Female","Baroda","5241789645","No");
+INSERT INTO patient VALUES(3,"Dhruvil","Diwan","2006-06-12","Male","Ahmedabad","7845961263","Yes");
+INSERT INTO patient VALUES(4,"Mahi","Chauhan","2006-06-30","Female","Surat","4571857896","Yes");
+
+
+INSERT INTO inventory VALUES(11,"Pharmaceuticals",15,"2030-10-10");
+INSERT INTO inventory VALUES(12,"Medical",50,"2027-12-05");
+INSERT INTO inventory VALUES(13,"Surgical and Medical",25,"2028-11-22");
+INSERT INTO inventory VALUES(14,"Consumable",45,"2026-05-25");
+
+
+
+INSERT INTO doctor VALUES(101,"Prabhas","Pandya","Cardiologists");
+INSERT INTO doctor VALUES(102,"Bharvi","Modi","Dentist");
+INSERT INTO doctor VALUES(103,"Nitu","Asari","Gynecologist");
+INSERT INTO doctor VALUES(104,"Mahek","Shah","Orthopedic Surgeon");
+
+
+INSERT INTO billing VALUES(201,2,5000.30,"2025-05-10","Pending");
+INSERT INTO billing VALUES(202,4,10000.00,"2026-10-10","Successful");
+INSERT INTO billing VALUES(203,1,7000.00,"2025-12-12","Successful");
+INSERT INTO billing VALUES(204,3,12000.00,"2026-01-11","Pending");
+
+
+INSERT INTO appointment VALUES(111,4,103,"2026-01-01","Scheduled");
+INSERT INTO appointment VALUES(112,1,101,"2025-12-12","Canceled");
+INSERT INTO appointment VALUES(113,2,104,"2026-02-21","Canceled");
+INSERT INTO appointment VALUES(114,3,102,"2026-03-31","Scheduled");
+
+CREATE TABLE Doctor(
+    Doctor_id  int PRIMARY KEY,
+    First_Name varchar(50),
+    Last_Name varchar(50),
+    Specialization varchar(50)
+    );
+
+CREATE TABLE Inventory(
+    Inventory_id int PRIMARY KEY,
+    item_name varchar(50),
+    Quantity varchar(50),
+    Expiration_date date
+    );
+
+
+CREATE TABLE Billing(
+    Billing_id int PRIMARY KEY,
+    patient_ID int,
+    Amount double,
+    Billing_date date,
+    Payment_Status varchar(50)
+    );
