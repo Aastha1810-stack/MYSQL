@@ -1,0 +1,66 @@
+CREATE DATABASE School;
+
+CREATE table Student_table(
+    Student_ID int PRIMARY KEY,
+    First_Name varchar(50),
+    Last_Name varchar(50),
+    GPA int,
+    Enrollment_Date datetime,
+    Major varchar(50)
+    );
+
+INSERT into student_table VALUES(201,"Shivansh","Mahajan",8.79,"2021-09-01 09:30:00","Computer Science");
+INSERT into student_table VALUES(202,"Umesh","Sharma",8.44,"2021-09-01 08:30:00","Mathematics");
+INSERT into student_table VALUES(203,"Rakesh","Kumar",5.60,"2021-09-21 10:00:00","Biology");
+INSERT into student_table VALUES(204,"Radha","Sharma",9.20,"2021-09-01 12:45:00","Chemistry");
+INSERT into student_table VALUES(205,"Kush","Kumar",7.85,"2021-09-01 08:30:00","Physics");
+INSERT into student_table VALUES(206,"Prem","Chopra",9.56,"2021-09-01 09:24:00","History");
+INSERT into student_table VALUES(207,"Pankaj","Vats",9.78,"2021-09-01 02:30:00","English");
+INSERT into student_table VALUES(208,"Navleen","Kaur",7.00,"2021-09-01 06:30:00","Mathematics");
+
+
+CREATE TABLE Program_table(
+    Student_ID int,
+    Program_Name varchar(50),
+    Program_Start_Date datetime,
+    FOREIGN KEY (Student_Id) REFERENCES student_table(Student_ID)
+    );
+
+
+INSERT INTO program_table VALUES(201,"Computer Science","2021-09-01 00:00:00");
+INSERT INTO program_table VALUES(202,"Mathematics","2021-09-01 00:00:00");
+INSERT INTO program_table VALUES(208,"Mathematics","2021-09-01 00:00:00");
+INSERT INTO program_table VALUES(205,"Physics","2021-09-01 00:00:00");
+INSERT INTO program_table VALUES(204,"Chemistry","2021-09-01 00:00:00");
+INSERT INTO program_table VALUES(207,"Psychology","2021-09-01 00:00:00");
+INSERT INTO program_table VALUES(206,"History","2021-09-01 00:00:00");
+INSERT INTO program_table VALUES(203,"Biology","2021-09-01 00:00:00");
+                                 
+
+CREATE TABLE Scholarship_Table(
+    Student_ID int,
+    Scholarship_Amount int,
+    Scholarship_Date datetime,
+    FOREIGN KEY(Student_ID) REFERENCES student_table(Student_ID)
+    );
+
+INSERT INTO scholarship_table VALUES(201,5000,"2021-10-15 00:00:00");
+INSERT INTO scholarship_table VALUES(202,4500,"2022-08-18 00:00:00");
+INSERT INTO scholarship_table VALUES(203,3000,"2021-01-25 00:00:00");
+INSERT INTO scholarship_table VALUES(201,4000,"2021-10-15 00:00:00");
+
+
+SELECT upper(First_Name) AS Student_name FROM student_table;
+
+SELECT DISTINCT(Major) FROM student_table;
+
+SELECT substring(First_Name,1,3) FROM student_table;
+
+SELECT instr('Shivansh','a') FROM student_table;
+
+SELECT DISTINCT(Major), length(major) FROM student_table;
+
+
+
+
+
